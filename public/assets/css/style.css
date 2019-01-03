@@ -1,0 +1,80 @@
+/*
+ * Custom styles
+ */
+
+.center-block {
+    margin: auto;
+    float: none;
+}
+
+.bg-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+}
+
+.footer {
+    position: absolute;
+    left:0;
+    right:0;
+}
+
+.content-dashboard {
+    width: 100%;
+    margin: auto;
+    padding-top: 48px;
+}
+
+.card-header {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+@media (min-width: 996px) {
+    .content-dashboard {
+        width: 960px;
+    }
+
+
+}
+
+@media (min-width: 768px) {
+    .paddingless-r {
+        padding-right: 5px;
+    }
+
+    .paddingless-l {
+        padding-left: 5px;
+    }
+}
+
+.pagination {
+    padding: 0 15px !important;
+}
+
+.disabledClick {
+    pointer-events: none;
+}
+
+@media (min-width: 768px) {
+    .col-r-pless {
+        padding-right: 5px;
+    }
+
+    .col-rl-pless {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    .col-l-pless {
+        padding-left: 5px;
+    }
+}
+
+.list-group-item:last-child {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
