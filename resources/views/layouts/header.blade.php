@@ -28,7 +28,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/plugins/pickers/daterange/daterange.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/extensions/toastr.css') }}">
 
-    @yield('pagestyle')
+    @stack('styles')
 
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
@@ -38,7 +38,7 @@
 <body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
       data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 <!-- fixed-top-->
-<nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light bg-info navbar-shadow">
+<nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light bg-primary navbar-shadow">
     <div class="navbar-wrapper">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
@@ -86,7 +86,7 @@
 
 
             <li class="nav-item">
-                <a href="">
+                <a href="{{ route('home') }}">
                     <i class="la la-home"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">Dashboard</span>
                     <span class="badge badge badge-info badge-pill float-right mr-2">Novo</span>
@@ -95,14 +95,14 @@
 
             <li class="nav-item"><a href="#"><i class="la la-briefcase"></i><span class="menu-title">Cadastros</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="#" data-i18n="nav.project.project_summary">Cadastro de agentes</a>
+                    <li><a class="menu-item" href="{{ route('create.agent') }}" data-i18n="nav.project.project_summary">Cadastro de agentes</a>
                     </li>
-                    <li><a class="menu-item" href="#" data-i18n="nav.project.project_tasks">Cadastro de condomínios</a>
+                    <li><a class="menu-item" href="{{ route('create.condominium') }}" data-i18n="nav.project.project_tasks">Cadastro de condomínios</a>
                     </li>
-                    <li><a class="menu-item" href="#" data-i18n="nav.project.project_bugs">Cadastro de moradores</a>
+                    <li><a class="menu-item" href="{{ route('create.dweller') }}" data-i18n="nav.project.project_bugs">Cadastro de moradores</a>
                     </li>
-                    <li><a class="menu-item" href="#" data-i18n="nav.project.project_bugs">Cadastro de grupos</a>
-                    </li>
+                    <!--<li><a class="menu-item" href="#" data-i18n="nav.project.project_bugs">Cadastro de grupos</a>
+                    </li>-->
                 </ul>
             </li>
 
@@ -112,28 +112,21 @@
             </li>
 
             <li class="nav-item">
-                <a href="">
+                <a href="{{ route('tickets') }}">
                     <i class="la la-users"></i>
                     <span class="menu-title">Últimos chamados</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="">
+                <a href="{{ route('soon') }}">
                     <i class="la la-shopping-cart"></i>
                     <span class="menu-title" >Relatórios gerais</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="">
-                    <i class="la la-file-text-o"></i>
-                    <span class="menu-title">Recursos</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="">
+                <a href="{{ route('soon') }}">
                     <i class="la la-file-text-o"></i>
                     <span class="menu-title">Serviços agendados</span>
                 </a>

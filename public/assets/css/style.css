@@ -78,3 +78,28 @@
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
 }
+
+/*
+ * Btn
+ */
+.btn-primary {
+    border-color: #00953D !important;
+    background-color: #00953D !important;
+}
+
+.btn-primary:hover {
+    border-color: #00953D !important;
+    background-color: #00953D !important;
+}
+
+.btn-primary:focus, .btn-primary:active {
+    border-color: #01722f !important;
+    background-color: #01722f !important;
+}
+
+/*
+ * Bg
+ */
+.bg-primary {
+    background-color: #00953D !important;
+}

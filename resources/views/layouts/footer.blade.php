@@ -24,6 +24,7 @@
 <script src="{{ asset('app-assets/js/core/app-menu.js') }}" type="text/javascript"></script>
 <script src="{{ asset('app-assets/js/core/app.js') }}" type="text/javascript"></script>
 <script src="{{ asset('app-assets/js/scripts/customizer.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/core/app.js') }}" type="text/javascript"></script>
 <!-- END MODERN JS-->
 
 <!-- Toastr -->
@@ -36,7 +37,7 @@
 </script>
 
 <!-- BEGIN PAGE LEVEL JS-->
-@yield('pagescript')
+@stack('scripts')
 <!-- END PAGE LEVEL JS-->
 
 

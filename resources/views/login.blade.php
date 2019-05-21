@@ -8,7 +8,7 @@
     <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
     <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
-    <title>FestAi - Login</title>
+    <title>Login Operador PrevServ</title>
     <link rel="apple-touch-icon" href="{{ asset('app-assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('app-assets/images/ico/favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CQuicksand:300,400,500,700" rel="stylesheet">
@@ -44,22 +44,19 @@
                                         <img src="{{ asset('app-assets/images/logo/logo-png.png') }}" style="max-width: 100px;" alt="">
                                     </div>
                                 </div>
-                                <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2"><span>Login com FestAi</span></h6>
+                                <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2"><span>Login Operador PrevServ</span></h6>
                             </div>
                             <div class="card-content">
                                 <div class="card-body">
-                                    @if(Session::has('error_message'))
-                                        <p class="alert alert-danger">{{ Session::get('error_message') }}</p>
-                                    @endif
-                                    <form class="form-horizontal form-simple" method="post" action="{{ route('login.post') }}">
-                                        {{ csrf_field() }}
+                                    <div style="display: none;" class="alert alert-danger" id="alert_L_Error"></div>
+                                    <form class="form-horizontal form-simple" method="post" id="form_Login">
                                         <fieldset class="form-group position-relative mb-0">
-                                            <input type="text" class="form-control form-control-lg input-lg" name="login" id="user-name" placeholder="Seu CNPJ" required>
+                                            <input type="text" class="form-control form-control-lg input-lg" name="login" id="txt_L_User" placeholder="Seu Login">
                                         </fieldset>
                                         <fieldset class="form-group position-relative">
-                                            <input type="password" name="password" class="form-control form-control-lg input-lg" id="user-password" placeholder="Sua senha" required>
+                                            <input type="password" name="password" class="form-control form-control-lg input-lg" id="txt_L_Password" placeholder="Sua senha">
                                         </fieldset>
-                                        <button type="submit" class="btn btn-info btn-lg btn-block"><i class="ft-unlock"></i> Login</button>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="ft-unlock"></i> Login</button>
                                     </form>
                                 </div>
                             </div>
@@ -77,12 +74,15 @@
 <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>
 <!-- BEGIN VENDOR JS-->
 <!-- BEGIN PAGE VENDOR JS-->
+<script src="{{ asset('assets/js/core/app.js') }}"></script>
+<script src="{{ asset('assets/js/core/Login.js') }}"></script>
 <!-- END PAGE VENDOR JS-->
 <!-- BEGIN MODERN JS-->
 <script src="{{ asset('app-assets/js/core/app-menu.js') }}"></script>
 <script src="{{ asset('app-assets/js/core/app.js') }}"></script>
 <!-- END MODERN JS-->
 <!-- BEGIN PAGE LEVEL JS-->
+<script src="{{ asset('assets/js/scripts/login.page.js') }}"></script>
 <!-- END PAGE LEVEL JS-->
 </body>
 </html>
