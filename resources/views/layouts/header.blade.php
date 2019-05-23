@@ -10,8 +10,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('app-assets/images/ico/favicon-32.png') }}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
           rel="stylesheet">
-    <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
-          rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.4.93/css/materialdesignicons.min.css">
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/vendors.css') }}">
     <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
@@ -62,7 +61,7 @@
             <div class="collapse navbar-collapse" id="navbar-mobile">
                 <ul class="nav navbar-nav mr-auto float-left">
                     <li>
-                        <h3 class="content-header-title mb-0 d-inline-block white">Home</h3>
+                        <h3 class="content-header-title mb-0 d-inline-block white">@yield('title')</h3>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav float-right">
@@ -95,14 +94,10 @@
 
             <li class="nav-item"><a href="#"><i class="la la-briefcase"></i><span class="menu-title">Cadastros</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="{{ route('create.agent') }}" data-i18n="nav.project.project_summary">Cadastro de agentes</a>
+                    <li><a class="menu-item" href="{{ route('create.agent') }}">Agentes</a>
                     </li>
-                    <li><a class="menu-item" href="{{ route('create.condominium') }}" data-i18n="nav.project.project_tasks">Cadastro de condomínios</a>
+                    <li><a class="menu-item" href="{{ route('create.condominium') }}">Condomínios</a>
                     </li>
-                    <li><a class="menu-item" href="{{ route('create.dweller') }}" data-i18n="nav.project.project_bugs">Cadastro de moradores</a>
-                    </li>
-                    <!--<li><a class="menu-item" href="#" data-i18n="nav.project.project_bugs">Cadastro de grupos</a>
-                    </li>-->
                 </ul>
             </li>
 
@@ -113,22 +108,22 @@
 
             <li class="nav-item">
                 <a href="{{ route('tickets') }}">
-                    <i class="la la-users"></i>
-                    <span class="menu-title">Últimos chamados</span>
+                    <i class="mdi mdi-ticket"></i>
+                    <span class="menu-title">Tickets</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('tickets') }}">
+                    <i class="mdi mdi-ticket"></i>
+                    <span class="menu-title">Liberações</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a href="{{ route('soon') }}">
                     <i class="la la-shopping-cart"></i>
-                    <span class="menu-title" >Relatórios gerais</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route('soon') }}">
-                    <i class="la la-file-text-o"></i>
-                    <span class="menu-title">Serviços agendados</span>
+                    <span class="menu-title" >Relatórios</span>
                 </a>
             </li>
 

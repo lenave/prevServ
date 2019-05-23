@@ -122,18 +122,19 @@
             var auth = new Auth(window.API_URL);
             $.alertMessage('info', 'Fazendo login...');
             auth.login($.trim(user.val()), $.trim(password.val()), function (response) {
+                console.log(response)
                 if (response.status == 200) {
                     if (response.data.token != undefined && response.data.user != undefined) {
                         var c = {
                             user_id: response.data.user.user_id,
                             login: response.data.user.login,
+                            app_id: response.data.user.app_id,
                             guard: response.data.user.guard,
                             token: response.data.token.access_token,
                             _token: '{{ csrf_token() }}'
                         };
                         var cookie = new Cookies('{{ route('cookies.set') }}');
                         cookie.set(c, function (_response) {
-                            console.log(_response);
                             if (_response.status == 200) {
                                 localStorage.setItem('login', response.data.user.login);
                                 window.location.href = '{{ route('home') }}';

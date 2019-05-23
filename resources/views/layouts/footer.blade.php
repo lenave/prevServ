@@ -23,18 +23,12 @@
 <!-- BEGIN MODERN JS-->
 <script src="{{ asset('app-assets/js/core/app-menu.js') }}" type="text/javascript"></script>
 <script src="{{ asset('app-assets/js/core/app.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/core/prototype/jquery.plugins.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/core/ErrorResponser.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/core/Cookies.js') }}" type="text/javascript"></script>
 <script src="{{ asset('app-assets/js/scripts/customizer.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/core/app.js') }}" type="text/javascript"></script>
 <!-- END MODERN JS-->
-
-<!-- Toastr -->
-<script>
-    if (localStorage.getItem('success_message') != null) {
-        toastr.success(localStorage.getItem('success_message'), 'Oba!');
-
-        localStorage.removeItem('success_message');
-    }
-</script>
 
 <!-- BEGIN PAGE LEVEL JS-->
 @stack('scripts')
