@@ -65,6 +65,32 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav float-right">
+                    <!--<li class="dropdown dropdown-notification nav-item">
+                        <a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-bell"></i>
+                            <span class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow">5</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                            <li class="dropdown-menu-header">
+                                <h6 class="dropdown-header m-0">
+                                    <span class="grey darken-2">Notificações</span>
+                                </h6>
+                                <span class="notification-tag badge badge-default badge-danger float-right m-0">5 New</span>
+                            </li>
+                            <li class="scrollable-container media-list w-100 ps-container ps-theme-dark">
+                                <a href="#!">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h6 class="media-heading">You have new order!</h6>
+                                            <p class="notification-text font-small-3 text-muted">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                                            <small>
+                                                <time class="media-meta text-muted">30 minutes ago</time>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>-->
                     <li class="dropdown dropdown-user nav-item">
                         <a class="nav-link white" href="">
                             <i class="ft-power"></i> Sair
@@ -88,11 +114,11 @@
                 <a href="{{ route('home') }}">
                     <i class="la la-home"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">Dashboard</span>
-                    <span class="badge badge badge-info badge-pill float-right mr-2">Novo</span>
+                    <span class="badge badge badge-primary badge-pill float-right mr-2">Novo</span>
                 </a>
             </li>
 
-            <li class="nav-item"><a href="#"><i class="la la-briefcase"></i><span class="menu-title">Cadastros</span></a>
+            <li class="nav-item"><a href="#"><span class="menu-title">Cadastros</span></a>
                 <ul class="menu-content">
                     <li><a class="menu-item" href="{{ route('create.agent') }}">Agentes</a>
                     </li>
@@ -100,7 +126,6 @@
                     </li>
                 </ul>
             </li>
-
 
             <li class="navigation-header">
                 <span>Funções</span>
@@ -122,7 +147,7 @@
 
             <li class="nav-item">
                 <a href="{{ route('soon') }}">
-                    <i class="la la-shopping-cart"></i>
+                    <i class="mdi mdi-ticket"></i>
                     <span class="menu-title" >Relatórios</span>
                 </a>
             </li>

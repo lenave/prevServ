@@ -31,6 +31,13 @@
 <!-- END MODERN JS-->
 
 <!-- BEGIN PAGE LEVEL JS-->
+<script>
+    $(document).on('click', '[data-dismiss=alertMessage].close', function (e) {
+        e.preventDefault();
+
+        $(this).closest('.alert').fadeOut();
+    });
+</script>
 @stack('scripts')
 <!-- END PAGE LEVEL JS-->
 
