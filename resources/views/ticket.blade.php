@@ -1,16 +1,21 @@
 @extends('layouts.app')
 
-@section('title', 'Cadastrar condomínio')
+@section('title', 'Ticket #' . $ticket)
 
+@push('scripts')
+    <script src="{{ asset('assets/js/core/Ticket.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/scripts/ticket.page.js') }}" type="text/javascript"></script>
 
+@endpush
 
 @section('content')
     <div class="app-content content">
         <div class="content-wrapper content-dashboard">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title mb-0 d-inline-block">Chamado #5</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">Ticket #</h3>
                     <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h6>
+                    <input type="hidden" id="txt_TicketID" value="{{ $ticket }}">
                 </div>
 
                 <div class="content-header-right col-md-6 col-12">

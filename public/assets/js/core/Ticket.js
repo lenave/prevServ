@@ -1,15 +1,17 @@
-function Ticket() {
+function Ticket(token) {
 
-    this.index = function(app, page, callback, token) {
+    this.token = token;
+
+    this.index = function(app, page, callback) {
         var self = this;
 
         // Call ajax that do the login
         $.ajax({
-            url: window.API_URL + '/tickets/dweller/' + app + '?page=' + page,
+            url: window.API_URL + '/tickets/app/' + app + '?page=' + page,
             type: 'GET',
             dataType: 'json',
             beforeSend: function(request) {
-                request.setRequestHeader("Authorization", token);
+                request.setRequestHeader("Authorization", self.token);
                 //$('body').append('<div class="overlay"></div>');
             },
             success: function(data) {
@@ -93,7 +95,7 @@ function Ticket() {
         });
     }
 
-    this.show = function(ticket, callback, token) {
+    this.show = function(ticket, callback) {
         var self = this;
 
         // Call ajax that do the login
@@ -102,7 +104,7 @@ function Ticket() {
             type: 'GET',
             dataType: 'json',
             beforeSend: function(request) {
-                request.setRequestHeader("Authorization", token);
+                request.setRequestHeader("Authorization", self.token);
                 //$('body').append('<div class="overlay"></div>');
             },
             success: function(data) {
@@ -123,13 +125,13 @@ function Ticket() {
         });
     }
 
-    this.cancel = function(ticket, callback, token) {
+    this.changeStatus = function(ticket, status, callback, token) {
         var self = this;
 
         $.ajax({
             url: window.API_URL + '/tickets/' + ticket,
             type: 'PUT',
-            data: {status: 4},
+            data: {status: status},
             dataType: 'json',
             beforeSend: function(request) {
                 request.setRequestHeader("Authorization", token);

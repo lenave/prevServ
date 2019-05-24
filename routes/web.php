@@ -38,13 +38,11 @@ Route::get('/cadastrar-morador', ['as' => 'create.dweller', 'uses' => function()
     return view('create-dweller');
 }]);
 
-Route::get('/chamados', ['as' => 'tickets', 'uses' => function() {
+Route::get('/tickets', ['as' => 'tickets', 'uses' => function() {
     return view('tickets');
 }]);
 
-Route::get('/chamado', ['as' => 'ticket', 'uses' => function() {
-    return view('ticket');
-}]);
+Route::get('/tickets/{ticket}', ['as' => 'ticket', 'uses' => 'RouteController@ticketShow']);
 
 Route::get('/liberacoes', ['as' => 'releases.index', 'uses' => function() {
     return view('releases');
