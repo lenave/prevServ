@@ -21,11 +21,12 @@ class CookieController extends Controller {
         ];
     }
     public function forget() {
-        Cookie::queue('user_id', null, -1);
-        Cookie::queue('token', null, -1);
+        Cookie::queue('app_id', null, -1);
+        Cookie::queue('guard', null, -1);
         Cookie::queue('name', null, -1);
         Cookie::queue('login', null, -1);
-        Cookie::queue('group_id', null, -1);
-        Cookie::queue('_token', null, -1);
+        Cookie::queue('token', null, -1);
+        Cookie::queue('user_id', null, -1);
+        return response()->json(['status' => Response::HTTP_OK]);
     }
 }

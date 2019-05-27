@@ -3,6 +3,7 @@
 @section('title', 'Ticket #' . $ticket)
 
 @push('scripts')
+    <script src="{{ asset('assets/js/core/Panic.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/core/Ticket.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/scripts/ticket.page.js') }}" type="text/javascript"></script>
 

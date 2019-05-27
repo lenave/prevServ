@@ -26,6 +26,7 @@
 <script src="{{ asset('assets/js/core/prototype/jquery.plugins.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/core/ErrorResponser.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/core/Cookies.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/core/Auth.js') }}" type="text/javascript"></script>
 <script src="{{ asset('app-assets/js/scripts/customizer.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/core/app.js') }}" type="text/javascript"></script>
 <!-- END MODERN JS-->
@@ -37,8 +38,16 @@
 
         $(this).closest('.alert').fadeOut();
     });
+
+    $(document).on('click', '#btn_Logout', function (e) {
+        e.preventDefault();
+
+        var auth = new Auth(window.API_URL);
+        auth.logout();
+    });
 </script>
 @stack('scripts')
+<script src="{{ asset('assets/js/core/Websocket.js') }}" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS-->
 
 

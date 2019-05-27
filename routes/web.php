@@ -13,7 +13,7 @@
 
 Route::prefix('cookies')->group(function () {
     Route::post('/', ['as' => 'cookies.set', 'uses' => 'CookieController@set']);
-    Route::get('/{name}', ['as' => 'cookies.get', 'uses' => 'CookieController@get']);
+    Route::get('/show/{name}', ['as' => 'cookies.get', 'uses' => 'CookieController@get']);
     Route::get('/forget', ['as' => 'cookies.forget', 'uses' => 'CookieController@forget']);
 });
 

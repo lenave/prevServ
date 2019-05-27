@@ -31,7 +31,7 @@
                 $('.alert-message').fadeIn().removeClass('alert-danger alert-warning alert-success alert-info')
                     .addClass('alert-info')
                     .find('.alert-text').text(m);
-            } else if (t === 'darger') {
+            } else if (t === 'danger') {
                 $('.alert-message').fadeIn().removeClass('alert-danger alert-warning alert-success alert-info')
                     .addClass('alert-danger')
                     .find('.alert-text').text(m);

@@ -23,7 +23,7 @@ function Cookies(APP_URL) {
     this.get = function (name, callback) {
         var self = this;
         $.ajax({
-            url: window.APP_URL + '/cookies/' + name,
+            url: window.APP_URL + '/cookies/show/' + name,
             type: 'GET',
             dataType: 'json',
             success: function (data) {
@@ -45,6 +45,7 @@ function Cookies(APP_URL) {
                 callback(data);
             },
             error: function (data) {
+                console.log(data);
                 self.error.error(data.status, data.responseJSON);
             }
         });

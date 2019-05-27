@@ -3,7 +3,7 @@ $(function () {
     cookie.get('user_id', function (c) {
         var ticket = new Ticket(c.token);
 
-        $(document).trigger('ticketLoaded', {ticket: ticket, user: c.user_id});
+        $(document).trigger('ticketLoaded', {ticket: ticket, user: c.user_id, token: c.token});
         $(document).trigger('listStatus', {ticket: ticket});
     });
 });
@@ -21,8 +21,14 @@ $(document).on('ticketLoaded', function (e, data) {
 
             $('#dpl_Status').val(response.data.status);
 
-            if (response.data.category == '1')
+            if (response.data.category == '1' && response.data.status == '1') {
+                var panic = new Panic(data.token);
+                panic.show(response.data.ticket_id, function (p) {
+                    console.log(p);
+                });
                 $('#div_Map').show();
+            }
+
 
             if (response.data.status == '4')
                 $('[data-open-modal=modal_Change_Status]').remove();
@@ -46,48 +52,9 @@ $(document).on('ticketLoaded', function (e, data) {
 
             // Comments
             if (response.data.comments.length > 0) {
-                var commentsList = $('.chat-application > .chats');
+
                 $.each(response.data.comments, function (_, v) {
-                    classWho = v.user != data.user_id ? 'chat-left' : '';
-
-                    attachmentC = '';
-                    if (v.attachments.length > 0) {
-                        $.each(v.attachments, function (_, a) {
-                            if (a.type == '2') {
-                                attachmentC += '<div class="chat-content">' +
-                                    '<div><audio controls>' +
-                                    '<source src="'+a.path+'" type="audio/ogg">' +
-                                    'Seu navegador não suporta reproduzir áudio' +
-                                    '</audio></div>' +
-                                    '<small>'+commentCreated+'</small>' +
-                                    '</div>';
-                            } else if (a.type == '1') {
-                                attachmentC += '<div class="chat-content">' +
-                                    '<div><img src="'+a.path+'" style="max-width: 80%;max-height: 80%;"></div>' +
-                                    '<small>'+commentCreated+'</small>' +
-                                    '</div>';
-                            }
-                        });
-                    }
-
-                    commentCreated = '-';
-                    if (v.created_at != null) {
-                        v.created_at = v.created_at.replace('T', ' ');
-                        commentCreated = new Date(v.created_at);
-                    }
-
-                    commentCreated = commentCreated.setFullDate('full');
-                    commentsList.append(
-                        '<div class="chat '+classWho+'">' +
-                        '<div class="chat-body">' +
-                        '<div class="chat-content">' +
-                        '<p>'+v.comment+'</p>' +
-                        '<small>'+commentCreated+'</small>' +
-                        '</div>' +
-                        attachmentC +
-                        '</div>' +
-                        '</div>'
-                    );
+                    data.ticket.buildComment(v, data.user, 'append');
                 });
             }
         }
@@ -143,4 +110,37 @@ $('#btn_Change_Status').on('click', function (e) {
 
 $('[data-open-modal]').on('click', function () {
     $('#' + $(this).attr('data-open-modal')).modal();
+});
+
+$('#btn_Add_Comment').on('click', function (e) {
+    e.preventDefault();
+
+    var cookie = new Cookies();
+    cookie.get('user_id', function (c) {
+        var ticket = new Ticket(c.token);
+        var ticketID = $("#txt_TicketID");
+        var comment = $('#textarea_Comment');
+        var isOK = true;
+
+        if ($.trim(comment.val()) == '') {
+            isOK = false;
+        } else {
+            var commentInfo = {
+                comment: comment.val(),
+                user: c.user_id
+            };
+        }
+
+        if (isOK) {
+            var appID = localStorage.getItem('appId');
+            ticket.storeComment(ticketID.val(), commentInfo, appID, {}, function (response) {
+                console.log(response);
+                if (response.data != undefined) {
+                    $('#modal_Add_Comment').modal('toggle');
+                    $.alertMessage('success', 'Comentário adicionado com sucesso');
+                }
+            });
+        }
+
+    });
 });

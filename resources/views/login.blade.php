@@ -97,8 +97,10 @@
 <!-- BEGIN PAGE LEVEL JS-->
 <script src="{{ asset('assets/js/core/Cookies.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/core/Auth.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/core/Websocket.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/core/ErrorResponser.js') }}" type="text/javascript"></script>
 <script>
+
     $('#form_Login').on('submit', function (e) {
         e.preventDefault();
         var btn = $(this).find('button[type=submit]');
@@ -137,7 +139,8 @@
                         cookie.set(c, function (_response) {
                             if (_response.status == 200) {
                                 localStorage.setItem('login', response.data.user.login);
-                                window.location.href = '{{ route('home') }}';
+                                localStorage.setItem('appId', response.data.user.app_id);
+                                window.conn.send('{"sessionId": "'+localStorage.getItem('sessionId')+'", "command": "subscribe", "channel": "app.'+response.data.user.app_id+'", "secret": "rIyCgHH2j8fQnyCKhGgJjjzGIInlaA0O"}');
                             }
                         });
                     } else {

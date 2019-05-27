@@ -34,10 +34,10 @@ function Auth(API_URL) {
     this.logout = function () {
         var cookie = new Cookies(window.APP_URL);
         cookie.forget(function (_response) {
+            console.log(_response);
             if (_response.status == 200) {
-                localStorage.clear();
-
-                window.location.href = '/login';
+                window.conn.send('{"sessionId": "'+localStorage.getItem('sessionId')+'", "command": "disconnect",  "secret": "rIyCgHH2j8fQnyCKhGgJjjzGIInlaA0O"}');
+                window.conn.send('{"sessionId": "'+localStorage.getItem('sessionId')+'", "command": "unsubscribe",  "secret": "rIyCgHH2j8fQnyCKhGgJjjzGIInlaA0O"}');
             }
         });
     }

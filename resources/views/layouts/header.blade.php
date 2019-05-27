@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
           rel="stylesheet">
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.4.93/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="{{ asset('app-assets/fonts/line-awesome/css/line-awesome.css') }}">
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/vendors.css') }}">
     <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
@@ -45,6 +46,7 @@
                             class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
                                 class="ft-menu font-large-1"></i></a></li>
                 <li class="nav-item mr-auto">
+
                     <a class="navbar-brand" href="">
                         <img class="brand-logo" alt="modern admin logo" src="{{ asset('app-assets/images/logo/logo.png') }}">
                         <h3 class="brand-text">PrevServ</h3>
@@ -92,7 +94,7 @@
                         </ul>
                     </li>-->
                     <li class="dropdown dropdown-user nav-item">
-                        <a class="nav-link white" href="">
+                        <a class="nav-link white" href="" id="btn_Logout">
                             <i class="ft-power"></i> Sair
                         </a>
                     </li>
@@ -112,13 +114,17 @@
 
             <li class="nav-item">
                 <a href="{{ route('home') }}">
-                    <i class="la la-home"></i>
+                    <i class="mdi mdi-map-marker-multiple"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">Dashboard</span>
                     <span class="badge badge badge-primary badge-pill float-right mr-2">Novo</span>
                 </a>
             </li>
 
-            <li class="nav-item"><a href="#"><span class="menu-title">Cadastros</span></a>
+            <li class="nav-item">
+                <a href="#">
+                    <i class="mdi mdi-briefcase-plus"></i>
+                    <span class="menu-title">Cadastros</span>
+                </a>
                 <ul class="menu-content">
                     <li><a class="menu-item" href="{{ route('create.agent') }}">Agentes</a>
                     </li>
@@ -133,13 +139,13 @@
 
             <li class="nav-item">
                 <a href="{{ route('tickets') }}">
-                    <i class="mdi mdi-ticket"></i>
+                    <i class="mdi mdi-ticket-outline"></i>
                     <span class="menu-title">Tickets</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('tickets') }}">
+                <a href="{{ route('soon') }}">
                     <i class="mdi mdi-ticket"></i>
                     <span class="menu-title">Liberações</span>
                 </a>
@@ -147,7 +153,7 @@
 
             <li class="nav-item">
                 <a href="{{ route('soon') }}">
-                    <i class="mdi mdi-ticket"></i>
+                    <i class="mdi mdi-chart-line"></i>
                     <span class="menu-title" >Relatórios</span>
                 </a>
             </li>
