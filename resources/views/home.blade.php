@@ -1,18 +1,62 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Dashboard')
+
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
+@endpush
 
 @push('scripts')
-
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
     <script>
-        L.mapquest.key = 'Hf335C31jFhZCfl3fcYghVvZqYG3mZEd';
-
-        // 'map' refers to a <div> element with the ID map
-        L.mapquest.map('map', {
-            center: [-22.750033, -47.317465],
-            layers: L.mapquest.tileLayer('map'),
-            zoom: 15
+        window.map = new ol.Map({
+            target: 'map',
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                })
+            ],
+            view: new ol.View({
+                center: ol.proj.fromLonLat([-47.335612, -22.745809]),
+                zoom: 15
+            })
         });
+
+
+
+        var iconFeatures=[];
+
+        var iconFeature = new ol.Feature({
+            geometry: new ol.geom.Point(ol.proj.transform([-47.335612, -22.745809], 'EPSG:4326',
+                'EPSG:3857')),
+            name: 'Null Island',
+            population: 4000,
+            rainfall: 500
+        });
+
+        iconFeatures.push(iconFeature);
+
+        var vectorSource = new ol.source.Vector({
+            features: iconFeatures //add an array of features
+        });
+
+        var iconStyle = new ol.style.Style({
+            image: new ol.style.Icon(({
+                anchor: [0.5, 46],
+                anchorXUnits: 'fraction',
+                anchorYUnits: 'pixels',
+                opacity: 1,
+                src: '{{ asset('assets/images/dweller-marker.png') }}'
+            }))
+        });
+
+
+        var vectorLayer = new ol.layer.Vector({
+            source: vectorSource,
+            style: iconStyle
+        });
+
+        window.map.addLayer(vectorLayer);
     </script>
 
 @endpush
@@ -30,194 +74,14 @@
 
         <div class="content-body">
             <div class="row" style="margin-bottom: 15px;">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <div id="map" style="width: 100%; height: 530px;"></div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <h4 class="card-title">Chamados ativos</h4>
-
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label class="font-weight-bold">Morador</label>
-                                        <p>Ricardo Alcântara</p>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label class="font-weight-bold">Status</label>
-                                        <br>
-                                        <div class="badge badge-danger">
-                                            Vermelho
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label class="font-weight-bold">Áudio</label>
-                                        <p>
-                                            <a href=""><i class="la la-play-circle la-3x"></i></a>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="font-weight-bold">Telefone</label>
-                                        <p>19 99694-1420</p>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label class="font-weight-bold">Incidente</label>
-                                        <p>R. da Blenda, 206</p>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="font-weight-bold">Condomínio</label>
-                                        <p>Montes Claros</p>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label class="font-weight-bold">Cidade</label>
-                                        <p>Ribeirão Preto</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <h4 class="card-title">Chamados ativos</h4>
-
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label class="font-weight-bold">Morador</label>
-                                        <p>Ricardo Alcântara</p>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label class="font-weight-bold">Status</label>
-                                        <br>
-                                        <div class="badge badge-danger">
-                                            Vermelho
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label class="font-weight-bold">Áudio</label>
-                                        <p>
-                                            <a href=""><i class="la la-play-circle la-3x"></i></a>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="font-weight-bold">Telefone</label>
-                                        <p>19 99694-1420</p>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label class="font-weight-bold">Incidente</label>
-                                        <p>R. da Blenda, 206</p>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="font-weight-bold">Condomínio</label>
-                                        <p>Montes Claros</p>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label class="font-weight-bold">Cidade</label>
-                                        <p>Ribeirão Preto</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <h4 class="card-title">Chamados ativos</h4>
-
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label class="font-weight-bold">Morador</label>
-                                        <p>Ricardo Alcântara</p>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label class="font-weight-bold">Status</label>
-                                        <br>
-                                        <div class="badge badge-danger">
-                                            Vermelho
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label class="font-weight-bold">Áudio</label>
-                                        <p>
-                                            <a href=""><i class="la la-play-circle la-3x"></i></a>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="font-weight-bold">Telefone</label>
-                                        <p>19 99694-1420</p>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label class="font-weight-bold">Incidente</label>
-                                        <p>R. da Blenda, 206</p>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="font-weight-bold">Condomínio</label>
-                                        <p>Montes Claros</p>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label class="font-weight-bold">Cidade</label>
-                                        <p>Ribeirão Preto</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @card()
+                    a
+                    @endcard
                 </div>
             </div>
         </div>
