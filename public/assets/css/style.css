@@ -240,3 +240,12 @@
     border-right-color: #edeef0;
     border-left-color: transparent;
 }
+
+/*
+ * Map
+ */
+#map .ol-viewport {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}

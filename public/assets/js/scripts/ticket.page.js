@@ -4,7 +4,7 @@ $(function () {
         var ticket = new Ticket(c.token);
 
         $(document).trigger('ticketLoaded', {ticket: ticket, user: c.user_id, token: c.token});
-        $(document).trigger('listStatus', {ticket: ticket});
+        //$(document).trigger('listStatus', {ticket: ticket});
     });
 });
 

@@ -38,6 +38,7 @@
       data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 <!-- fixed-top-->
 <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light bg-primary navbar-shadow">
+    <div id="alert_Sound"></div>
     <div class="navbar-wrapper">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">

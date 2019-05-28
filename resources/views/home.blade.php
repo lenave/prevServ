@@ -8,56 +8,9 @@
 
 @push('scripts')
     <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
-    <script>
-        window.map = new ol.Map({
-            target: 'map',
-            layers: [
-                new ol.layer.Tile({
-                    source: new ol.source.OSM()
-                })
-            ],
-            view: new ol.View({
-                center: ol.proj.fromLonLat([-47.335612, -22.745809]),
-                zoom: 15
-            })
-        });
-
-
-
-        var iconFeatures=[];
-
-        var iconFeature = new ol.Feature({
-            geometry: new ol.geom.Point(ol.proj.transform([-47.335612, -22.745809], 'EPSG:4326',
-                'EPSG:3857')),
-            name: 'Null Island',
-            population: 4000,
-            rainfall: 500
-        });
-
-        iconFeatures.push(iconFeature);
-
-        var vectorSource = new ol.source.Vector({
-            features: iconFeatures //add an array of features
-        });
-
-        var iconStyle = new ol.style.Style({
-            image: new ol.style.Icon(({
-                anchor: [0.5, 46],
-                anchorXUnits: 'fraction',
-                anchorYUnits: 'pixels',
-                opacity: 1,
-                src: '{{ asset('assets/images/dweller-marker.png') }}'
-            }))
-        });
-
-
-        var vectorLayer = new ol.layer.Vector({
-            source: vectorSource,
-            style: iconStyle
-        });
-
-        window.map.addLayer(vectorLayer);
-    </script>
+    <script src="{{ asset('assets/js/core/Panic.js') }}"></script>
+    <script src="{{ asset('assets/js/core/Ticket.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts/home.page.js') }}"></script>
 
 @endpush
 
@@ -74,10 +27,15 @@
 
         <div class="content-body">
             <div class="row" style="margin-bottom: 15px;">
-                <div class="col-md-8">
+                <div class="col-md-12">
+                    @card(['classesBody' => 'p-0'])
                     <div id="map" style="width: 100%; height: 530px;"></div>
-                </div>
+                    @endcard
 
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-md-4">
                     @card()
                     a

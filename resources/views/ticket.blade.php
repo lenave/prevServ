@@ -12,7 +12,10 @@
 @section('content')
 
     @modal(['id' => 'modal_Change_Status', 'title' => 'Alterar status', 'close' => 'Fechar', 'button' => 'Alterar status', 'button_id' => 'btn_Change_Status'])
-        <select id="dpl_Status" class="form-control"></select>
+        <select id="dpl_Status" class="form-control">
+            <option value="2">Em progresso</option>
+            <option value="4">Finalizar</option>
+        </select>
     @endmodal
 
     @modal(['id' => 'modal_Add_Comment', 'title' => 'Adicionar comentário', 'close' => 'Fechar', 'button' => 'Adicionar', 'button_id' => 'btn_Add_Comment'])
