@@ -19,7 +19,7 @@ $(document).on('ticketLoaded', function (e, data) {
             $('#lbl_Status').text(response.data._status.description);
             $('#lbl_Category').text(response.data._category.description);
 
-            $('#dpl_Status').val(response.data.status);
+            //$('#dpl_Status').val(response.data.status);
 
             if (response.data.category == '1' && response.data.status == '1') {
                 var panic = new Panic(data.token);

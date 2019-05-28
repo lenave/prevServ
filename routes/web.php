@@ -17,37 +17,39 @@ Route::prefix('cookies')->group(function () {
     Route::get('/forget', ['as' => 'cookies.forget', 'uses' => 'CookieController@forget']);
 });
 
-Route::get('/', ['as' => 'home', 'uses' => function() {
-    return view('home');
-}]);
-
-Route::get('/cadastrar-agente', ['as' => 'create.agent', 'uses' => function() {
-    return view('create-agent');
-}]);
-
-Route::get('/cadastrar-condominio', ['as' => 'create.condominium', 'uses' => function() {
-    return view('create-condominium');
-}]);
-
 Route::get('/login', ['as' => 'login', 'uses' => function() {
     return view('login');
 }]);
 
 
-Route::get('/cadastrar-morador', ['as' => 'create.dweller', 'uses' => function() {
-    return view('create-dweller');
-}]);
+Route::middleware('auth')->group(function () {
+    Route::get('/', ['as' => 'home', 'uses' => function() {
+        return view('home');
+    }]);
 
-Route::get('/tickets', ['as' => 'tickets', 'uses' => function() {
-    return view('tickets');
-}]);
+    Route::get('/cadastrar-agente', ['as' => 'create.agent', 'uses' => function() {
+        return view('create-agent');
+    }]);
 
-Route::get('/tickets/{ticket}', ['as' => 'ticket', 'uses' => 'RouteController@ticketShow']);
+    Route::get('/cadastrar-condominio', ['as' => 'create.condominium', 'uses' => function() {
+        return view('create-condominium');
+    }]);
 
-Route::get('/liberacoes', ['as' => 'releases.index', 'uses' => function() {
-    return view('releases');
-}]);
+    Route::get('/cadastrar-morador', ['as' => 'create.dweller', 'uses' => function() {
+        return view('create-dweller');
+    }]);
 
-Route::get('/em-breve', ['as' => 'soon', 'uses' => function() {
-    return view('soon');
-}]);
+    Route::get('/tickets', ['as' => 'tickets', 'uses' => function() {
+        return view('tickets');
+    }]);
+
+    Route::get('/tickets/{ticket}', ['as' => 'ticket', 'uses' => 'RouteController@ticketShow']);
+
+    Route::get('/liberacoes', ['as' => 'releases.index', 'uses' => function() {
+        return view('releases');
+    }]);
+
+    Route::get('/em-breve', ['as' => 'soon', 'uses' => function() {
+        return view('soon');
+    }]);
+});

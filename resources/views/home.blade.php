@@ -8,7 +8,6 @@
 
 @push('scripts')
     <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
-    <script src="{{ asset('assets/js/core/Panic.js') }}"></script>
     <script src="{{ asset('assets/js/core/Ticket.js') }}"></script>
     <script src="{{ asset('assets/js/scripts/home.page.js') }}"></script>
 
@@ -35,13 +34,7 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-4">
-                    @card()
-                    a
-                    @endcard
-                </div>
-            </div>
+            <div class="card-inline-scroll" id="panic_Alert_List"></div>
         </div>
     </div>
 </div>

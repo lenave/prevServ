@@ -3,7 +3,6 @@
 @section('title', 'Ticket #' . $ticket)
 
 @push('scripts')
-    <script src="{{ asset('assets/js/core/Panic.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/core/Ticket.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/scripts/ticket.page.js') }}" type="text/javascript"></script>
 
@@ -13,7 +12,7 @@
 
     @modal(['id' => 'modal_Change_Status', 'title' => 'Alterar status', 'close' => 'Fechar', 'button' => 'Alterar status', 'button_id' => 'btn_Change_Status'])
         <select id="dpl_Status" class="form-control">
-            <option value="2">Em progresso</option>
+            <option value="2" selected>Em progresso</option>
             <option value="4">Finalizar</option>
         </select>
     @endmodal

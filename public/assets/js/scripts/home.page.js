@@ -28,6 +28,8 @@ $(function () {
             if (response.data != undefined && response.data.length > 0) {
                 $.each(response.data, function (_, v) {
                     if (v.localization.longitude != undefined && v.localization.latitude != undefined) {
+                        panic.build(v);
+
                         iconFeatures.push(
                             new ol.Feature({
                                 geometry: new ol.geom.Point(ol.proj.transform([parseFloat(v.localization.longitude), parseFloat(v.localization.latitude)], 'EPSG:4326',
@@ -95,8 +97,6 @@ $(document).on('addFeature', function (e,data) {
 $(document).on('removeFeature', function (e, data) {
     var features = window.vectorLayer.getSource().getFeatures();
     features.forEach((feature) => {
-        console.log(feature.values_.ticket);
-        console.log(data.ticket_id);
         if (feature.values_.ticket == data.ticket_id) {
             window.vectorLayer.getSource().removeFeature(feature);
 

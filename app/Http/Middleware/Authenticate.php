@@ -13,22 +13,22 @@ class Authenticate extends Middleware
     public function handle($request, Closure $next, ...$guard)
     {
         if (!empty(Cookie::get('token')) && !empty(Cookie::get('user_id'))) {
-            /*try {
+            try {
                 $client = new Client();
-                $client->request('GET', env('API_URL') . '/api/covenants?user=' . Cookie::get('user_id'), [
+                $client->request('GET', env('API_URL') . '/panic/active?AppID=' . Cookie::get('app_id'), [
                     'headers' => ['Authorization' => Cookie::get('token')]
                 ]);
             } catch (BadResponseException $e) {
                 if ($e->getCode() == 401) {
-                    Cookie::queue('user_id', null, -1);
-                    Cookie::queue('token', null, -1);
+                    Cookie::queue('app_id', null, -1);
+                    Cookie::queue('guard', null, -1);
                     Cookie::queue('name', null, -1);
                     Cookie::queue('login', null, -1);
-                    Cookie::queue('group_id', null, -1);
-                    Cookie::queue('_token', null, -1);
+                    Cookie::queue('token', null, -1);
+                    Cookie::queue('user_id', null, -1);
                     return redirect()->route('login');
                 }
-            }*/
+            }
             return $next($request);
         } else {
             return redirect()->route('login');

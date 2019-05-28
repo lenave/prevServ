@@ -26,6 +26,7 @@
 <script src="{{ asset('assets/js/core/ErrorResponser.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/core/Cookies.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/core/Auth.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/core/Panic.js') }}"></script>
 <script src="{{ asset('app-assets/js/scripts/customizer.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/core/app.js') }}" type="text/javascript"></script>
 <!-- END MODERN JS-->
