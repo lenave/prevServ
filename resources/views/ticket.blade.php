@@ -4,7 +4,7 @@
 
 @push('scripts')
     <script src="{{ asset('assets/js/core/Ticket.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/scripts/ticket.page.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/scripts/ticket.page.js') }}?v=0.0.1" type="text/javascript"></script>
 
 @endpush
 
@@ -105,17 +105,21 @@
                             <p id="lbl_D_Address"></p>
                             <p id="lbl_D_Number"></p>
                         </fieldset>
+                        <fieldset class="form-group">
+                            <p class="form-control-static" style="font-weight: 700;">Condomínio</p>
+                            <p id="lbl_C_Name"></p>
+                        </fieldset>
                         @endcard
                     </div>
                 </div>
 
-                <div class="row" id="div_Map" style="display: none;">
+                <!--<div class="row" id="div_Map" style="display: none;">
                     <div class="col-md-12">
                         @card(['title' => 'Mapa'])
                         <div id="map" class="map"></div>
                         @endcard
                     </div>
-                </div>
+                </div>-->
 
                 <div class="row">
                     <div class="col-md-12">

@@ -74,6 +74,10 @@ $(document).on('ticketLoaded', function (e, data) {
                 });
             }
         }
+
+        if (response.condominium != undefined) {
+            $('#lbl_C_Name').text(response.condominium.fantasy_name);
+        }
     });
 });
 

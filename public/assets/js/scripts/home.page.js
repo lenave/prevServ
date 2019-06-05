@@ -12,11 +12,6 @@ $(function () {
         })
     });
 
-
-
-
-
-
     var iconFeatures = [];
     window.vectorLayer = null;
     var cookie = new Cookies();
@@ -26,6 +21,7 @@ $(function () {
         panic.index(c.app_id, function (response) {
             console.log(response);
             if (response.data != undefined && response.data.length > 0) {
+                $('#empty_Panic').hide();
                 $.each(response.data, function (_, v) {
                     if (v.localization.longitude != undefined && v.localization.latitude != undefined) {
                         panic.build(v);
@@ -42,6 +38,8 @@ $(function () {
                 });
 
                 $(document).trigger('addFeature', {iconFeatures: iconFeatures});
+            } else {
+                $('#empty_Panic').fadeIn();
             }
         });
     });
@@ -49,7 +47,7 @@ $(function () {
 
     window.map.on("click", function(e) {
         window.map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
-            window.open('/tickets/' + feature.values_.ticket, '_blank');
+            $(document).trigger('openPanicModal', {ticket_id: feature.values_.ticket});
         })
     });
 
@@ -113,12 +111,18 @@ $(document).on('removeFeature', function (e, data) {
                 );
 
                 $(document).trigger('addFeature', {iconFeatures: iconFeatures});
+            } else {
+                $('[data-panic-id='+data.ticket_id+']').remove();
+
+                if ($('[data-panic-id]').length <= 0)
+                    $('#empty_Panic').fadeIn();
+                else
+                    $('#empty_Panic').hide();
             }
         }
 
     });
 });
-
 
 $(document).on('storeNewPanic', function (e, data) {
     var cookie = new Cookies();
@@ -126,8 +130,10 @@ $(document).on('storeNewPanic', function (e, data) {
     cookie.get('app_id', function (c) {
         var panic = new Panic(c.token);
 
+        $('#empty_Panic').hide();
+        panic.build(data.ticket);
+
         panic.show(data.ticket_id, function (response) {
-            console.log(response);
             if (response.data.longitude != undefined && response.data.latitude != undefined) {
                 iconFeatures.push(
                     new ol.Feature({
@@ -139,6 +145,71 @@ $(document).on('storeNewPanic', function (e, data) {
                 );
 
                 $(document).trigger('addFeature', {iconFeatures: iconFeatures});
+            }
+        });
+    });
+});
+
+$(document).on('click', '[data-panic-id]', function (e) {
+    e.preventDefault();
+
+    $(document).trigger('openPanicModal', {ticket_id: $(this).attr('data-panic-id')});
+});
+
+$(document).on('openPanicModal', function (e, data) {
+    $('#modal_Open_Panic').modal();
+
+    var cookie = new Cookies();
+    cookie.get('user_id', function (c) {
+        var ticket = new Ticket(c.token);
+
+        ticket.show(data.ticket_id, function (response) {
+            console.log(response);
+            if (response.data != undefined) {
+                $('#lbl_TicketID').text(response.data.ticket_id);
+                $('#lbl_Title').text(response.data.name);
+                $('#lbl_Description').text(response.data.description);
+                $('#lbl_Status').text(response.data._status.description);
+                $('#lbl_Category').text(response.data._category.description);
+
+                created = '-';
+                updated = '-';
+                if (response.data.created_at != null) {
+                    response.data.created_at = response.data.created_at.replace('T', ' ');
+                    created = new Date(response.data.created_at);
+                }
+                if (response.data.updated_at != null) {
+                    response.data.updated_at = response.data.updated_at.replace('T', ' ');
+                    updated = new Date(response.data.updated_at);
+                }
+
+                created = created.setFullDate('full');
+                updated = updated.setFullDate('full');
+
+                $('#lbl_Created').text(created);
+                $('#lbl_Updated').text(updated);
+
+                $('#ancor_Open_Ticket').attr('href', '/tickets/' + response.data.ticket_id);
+            }
+
+            if (response.dweller != undefined) {
+                $('#lbl_D_Name').text(response.dweller.name);
+                $('#lbl_D_Document').text(response.dweller.document);
+
+                if (response.dweller.addresses.length > 0)
+                    $('#lbl_D_Address').text(response.dweller.addresses[0].street + ', ' + response.dweller.addresses[0].number);
+
+                if (response.dweller.contacts.length > 0) {
+                    $.each(response.dweller.contacts, function (_, v) {
+                        $('#list_D_Contacts').append(
+                            '<p>'+v.contact+'</p>'
+                        );
+                    });
+                }
+            }
+
+            if (response.condominium != undefined) {
+                $('#lbl_C_Name').text(response.condominium.fantasy_name);
             }
         });
     });

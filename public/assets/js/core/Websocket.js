@@ -110,12 +110,18 @@ function messageType(message) {
         case 'storePanic':
             var panicStore = JSON.parse(message.panic);
             toastr.warning(message.message, 'Pânico!');
-            var mp3Source = '<source src="/assets/sounds/panic-alert.mp3" type="audio/mpeg">';
-            var embedSource = '<embed hidden="true" autostart="true" loop="false" src="/assets/sounds/panic-alert.mp3">';
-            document.getElementById("alert_Sound").innerHTML='<audio autoplay="autoplay">' + mp3Source + embedSource + '</audio>';
 
-            var panic = new Panic();
-            panic.build(panicStore.data, 'prepend');
+
+            if ($('#alert_Sound').html() != '') {
+                console.log('play audio');
+                $("#alert_Sound audio")[0].play();
+            } else {
+                console.log('monta audio');
+                var mp3Source = '<source src="/assets/sounds/panic-alert.mp3" type="audio/mpeg">';
+                var embedSource = '<embed hidden="true" autostart="true" loop="false" src="/assets/sounds/panic-alert.mp3">';
+                document.getElementById("alert_Sound").innerHTML='<audio autoplay="autoplay">' + mp3Source + embedSource + '</audio>';
+                $("#alert_Sound audio")[0].play();
+            }
 
             $(document).trigger('storeNewPanic', {ticket_id: panicStore.data.ticket_id, ticket: panicStore.data});
 
@@ -124,13 +130,10 @@ function messageType(message) {
         case 'updateTicket':
             toastr.info(message.message, 'Ticket atualizado');
             var ticketUpdate = JSON.parse(message.ticket);
-            console.log(ticketUpdate);
 
-            if (ticketUpdate.data.category == '1' && ticketUpdate.data.status == '4') {
-                var p = new Panic();
-                p.removeCard(ticketUpdate.data.ticket_id);
+            if (ticketUpdate.data.category == '1' && ticketUpdate.data.status == '4')
                 $(document).trigger('removeFeature', {ticket_id: ticketUpdate.data.ticket_id});
-            }
+
 
             break;
     }
